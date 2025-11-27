@@ -1,0 +1,258 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+:root {
+  --background: hsl(200 20% 5%);
+  --foreground: hsl(180 100% 95%);
+  --card: hsl(200 20% 8%);
+  --card-foreground: hsl(180 100% 95%);
+  --popover: hsl(200 20% 8%);
+  --popover-foreground: hsl(180 100% 95%);
+  --primary: hsl(180 100% 50%);
+  --primary-foreground: hsl(200 20% 5%);
+  --secondary: hsl(140 100% 50%);
+  --secondary-foreground: hsl(200 20% 5%);
+  --muted: hsl(200 15% 15%);
+  --muted-foreground: hsl(180 50% 60%);
+  --accent: hsl(180 100% 50%);
+  --accent-foreground: hsl(200 20% 5%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(180 100% 50% / 0.2);
+  --input: hsl(200 15% 15%);
+  --ring: hsl(180 100% 50%);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Courier New', monospace, system-ui, -apple-system, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Tech grid background */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  /* Scanline effect */
+  body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 50%,
+        rgba(0, 255, 255, 0.02) 50%);
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+    animation: scanline 8s linear infinite;
+  }
+
+  @keyframes scanline {
+    0% {
+      transform: translateY(0);
+    }
+
+    100% {
+      transform: translateY(100vh);
+    }
+  }
+}
+
+/* Custom Scrollbar - Neon Style */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(200 20% 8%);
+  border-left: 1px solid hsl(180 100% 50% / 0.2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, hsl(180 100% 50%), hsl(140 100% 50%));
+  border-radius: 5px;
+  box-shadow: 0 0 10px hsl(180 100% 50%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, hsl(180 100% 60%), hsl(140 100% 60%));
+  box-shadow: 0 0 15px hsl(180 100% 50%);
+}
+
+/* Utility for 3D canvas container */
+.canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, hsl(200 30% 8%) 0%, hsl(200 20% 5%) 100%);
+}
+
+/* Neon glow effect utility */
+.neon-glow {
+  text-shadow:
+    0 0 10px hsl(180 100% 50%),
+    0 0 20px hsl(180 100% 50%),
+    0 0 30px hsl(180 100% 50%);
+}
+
+/* Tech border animation */
+@keyframes border-flow {
+
+  0%,
+  100% {
+    border-color: hsl(180 100% 50% / 0.5);
+  }
+
+  50% {
+    border-color: hsl(140 100% 50% / 0.5);
+  }
+}
+
+.tech-border {
+  animation: border-flow 3s ease-in-out infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  opacity: 0;
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Custom Robotic Cursor */
+:root {
+  --cursor-x: 0px;
+  --cursor-y: 0px;
+}
+
+* {
+  cursor: none !important;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  width: 20px;
+  height: 20px;
+  border: 2px solid hsl(180 100% 50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s, height 0.2s, border-color 0.3s;
+  animation: cursorPulse 2s ease-in-out infinite;
+  box-shadow:
+    0 0 10px hsl(180 100% 50%),
+    0 0 20px hsl(180 100% 50% / 0.5),
+    inset 0 0 10px hsl(180 100% 50% / 0.3);
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  width: 6px;
+  height: 6px;
+  background: hsl(180 100% 50%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  box-shadow:
+    0 0 5px hsl(180 100% 50%),
+    0 0 10px hsl(180 100% 50%);
+}
+
+@keyframes cursorPulse {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Cursor hover effects */
+a:hover,
+button:hover,
+input:hover,
+textarea:hover,
+[role="button"]:hover {
+  --cursor-hover: true;
+}
+
+body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
+  width: 40px;
+  height: 40px;
+  border-color: hsl(140 100% 50%);
+  box-shadow:
+    0 0 15px hsl(140 100% 50%),
+    0 0 30px hsl(140 100% 50% / 0.5);
+}
