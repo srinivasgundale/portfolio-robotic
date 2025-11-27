@@ -15,8 +15,16 @@ export default function RobotIllustration() {
 
     const themeColors = colors[theme] || colors.robotic;
 
+    // Theme-specific animation classes
+    const animationClass = {
+        robotic: "animate-bounce-gentle",
+        cyberpunk: "animate-glitch-shake",
+        matrix: "animate-wave",
+        neon: "animate-spin-slow"
+    }[theme] || "animate-bounce-gentle";
+
     return (
-        <div className="w-full h-[400px] flex items-center justify-center relative">
+        <div className={`w-full h-[400px] flex items-center justify-center relative ${animationClass}`}>
             {/* Robotic Theme - Original Robot */}
             {theme === "robotic" && (
                 <svg
@@ -242,6 +250,13 @@ export default function RobotIllustration() {
                 }
                 .animate-arm-right {
                     animation: armRight 2s ease-in-out infinite 0.5s;
+                }
+                .robot-body {
+                    animation: robotBounce 2s ease-in-out infinite;
+                }
+                @keyframes robotBounce {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
                 }
             `}</style>
         </div>

@@ -457,3 +457,94 @@ body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hov
 .animate-shimmer {
   animation: shimmer 2s infinite;
 }
+
+/* Fun Robot Animations */
+@keyframes bounceGentle {
+
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+
+  50% {
+    transform: translateY(-20px) scale(1.02);
+  }
+}
+
+@keyframes glitchShake {
+
+  0%,
+  100% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  10% {
+    transform: translate(-2px, 2px) rotate(-1deg);
+  }
+
+  20% {
+    transform: translate(2px, -2px) rotate(1deg);
+  }
+
+  30% {
+    transform: translate(-2px, -2px) rotate(-1deg);
+  }
+
+  40% {
+    transform: translate(2px, 2px) rotate(1deg);
+  }
+
+  50% {
+    transform: translate(0, 0) rotate(0deg);
+  }
+}
+
+@keyframes wave {
+
+  0%,
+  100% {
+    transform: translateX(0) translateY(0);
+  }
+
+  25% {
+    transform: translateX(-10px) translateY(-10px);
+  }
+
+  50% {
+    transform: translateX(0) translateY(-20px);
+  }
+
+  75% {
+    transform: translateX(10px) translateY(-10px);
+  }
+}
+
+@keyframes spinSlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+  }
+
+  50% {
+    transform: rotate(5deg) scale(1.05);
+  }
+
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+.animate-bounce-gentle {
+  animation: bounceGentle 3s ease-in-out infinite;
+}
+
+.animate-glitch-shake {
+  animation: glitchShake 2s ease-in-out infinite;
+}
+
+.animate-wave {
+  animation: wave 4s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spinSlow 6s ease-in-out infinite;
+}
