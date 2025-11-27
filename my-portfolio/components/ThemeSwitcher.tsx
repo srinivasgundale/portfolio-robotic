@@ -33,7 +33,7 @@ const themes = [
 ];
 
 export default function ThemeSwitcher() {
-    const { theme, setTheme } = useTheme();
+    const { theme, setTheme, isDark, toggleDarkMode } = useTheme();
     const [isOpen, setIsOpen] = useState(false);
 
     return (
@@ -59,8 +59,22 @@ export default function ThemeSwitcher() {
                         className="absolute bottom-20 right-0 w-64 bg-card border-2 border-primary/30 rounded-lg shadow-2xl p-4 backdrop-blur-md"
                     >
                         <h3 className="text-sm font-mono text-primary mb-3 uppercase tracking-wider">
-                            {'<'} Select Theme {'/>'}
+                            {'<'} Theme Settings {'/>'}
                         </h3>
+
+                        {/* Dark Mode Toggle */}
+                        <button
+                            onClick={toggleDarkMode}
+                            className="w-full p-3 mb-4 rounded-lg border-2 border-primary/30 hover:border-primary/50 transition-all duration-300 flex items-center justify-between bg-primary/5"
+                        >
+                            <span className="text-sm font-mono text-foreground">
+                                {isDark ? "🌙 Dark Mode" : "☀️ Light Mode"}
+                            </span>
+                            <div className={`w-12 h-6 rounded-full transition-colors duration-300 ${isDark ? 'bg-primary' : 'bg-muted'} relative`}>
+                                <div className={`absolute top-1 w-4 h-4 rounded-full bg-white transition-transform duration-300 ${isDark ? 'left-7' : 'left-1'}`} />
+                            </div>
+                        </button>
+
                         <div className="space-y-2">
                             {themes.map((t) => (
                                 <button

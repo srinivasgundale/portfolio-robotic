@@ -115,6 +115,64 @@
   --ring: hsl(15 100% 60%);
 }
 
+/* Light Mode Variants */
+:root[data-theme="robotic"]:not(.dark),
+:root:not(.dark) {
+  --background: hsl(0 0% 98%);
+  --foreground: hsl(200 20% 10%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(200 20% 10%);
+  --primary: hsl(180 100% 40%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(140 100% 35%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(0 0% 92%);
+  --muted-foreground: hsl(0 0% 40%);
+  --border: hsl(180 30% 80%);
+}
+
+:root[data-theme="cyberpunk"]:not(.dark) {
+  --background: hsl(280 20% 98%);
+  --foreground: hsl(280 30% 10%);
+  --card: hsl(280 10% 100%);
+  --card-foreground: hsl(280 30% 10%);
+  --primary: hsl(300 100% 45%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(320 100% 45%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(280 10% 92%);
+  --muted-foreground: hsl(280 20% 40%);
+  --border: hsl(300 30% 80%);
+}
+
+:root[data-theme="matrix"]:not(.dark) {
+  --background: hsl(120 20% 98%);
+  --foreground: hsl(120 40% 15%);
+  --card: hsl(120 10% 100%);
+  --card-foreground: hsl(120 40% 15%);
+  --primary: hsl(120 100% 35%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(140 100% 30%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(120 10% 92%);
+  --muted-foreground: hsl(120 20% 40%);
+  --border: hsl(120 30% 80%);
+}
+
+:root[data-theme="neon"]:not(.dark) {
+  --background: hsl(20 20% 98%);
+  --foreground: hsl(20 30% 10%);
+  --card: hsl(20 10% 100%);
+  --card-foreground: hsl(20 30% 10%);
+  --primary: hsl(15 100% 50%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(35 100% 45%);
+  --secondary-foreground: hsl(0 0% 98%);
+  --muted: hsl(20 10% 92%);
+  --muted-foreground: hsl(20 20% 40%);
+  --border: hsl(15 30% 80%);
+}
+
 @layer base {
   * {
     border-color: var(--border);
