@@ -256,3 +256,18 @@ body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hov
     0 0 15px hsl(140 100% 50%),
     0 0 30px hsl(140 100% 50% / 0.5);
 }
+
+/* Shimmer animation for loading bar */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
