@@ -16,8 +16,8 @@ export default function ScrollReveal({ children, delay = 0 }: { children: React.
                 }
             },
             {
-                threshold: 0.1,
-                rootMargin: '50px'
+                threshold: 0.15,
+                rootMargin: '0px'
             }
         );
 
@@ -35,10 +35,14 @@ export default function ScrollReveal({ children, delay = 0 }: { children: React.
     return (
         <div
             ref={ref}
-            className={`transition-all duration-1000 ease-out ${isVisible
-                    ? 'opacity-100 translate-y-0'
-                    : 'opacity-0 translate-y-10'
-                }`}
+            style={{
+                transition: 'all 1.2s cubic-bezier(0.16, 1, 0.3, 1)',
+                transform: isVisible
+                    ? 'translateY(0) scale(1)'
+                    : 'translateY(80px) scale(0.95)',
+                opacity: isVisible ? 1 : 0,
+                filter: isVisible ? 'blur(0px)' : 'blur(10px)'
+            }}
         >
             {children}
         </div>
