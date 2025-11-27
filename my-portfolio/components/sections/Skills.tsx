@@ -1,15 +1,36 @@
 "use client";
 
+import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 
 export default function Skills() {
+    const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
+
     const categories = [
-        { title: "Languages", skills: portfolioData.skills.languages },
-        { title: "Frontend", skills: portfolioData.skills.frontend },
-        { title: "Backend", skills: portfolioData.skills.backend },
-        { title: "Database", skills: portfolioData.skills.database },
-        { title: "Cloud & DevOps", skills: portfolioData.skills.cloud },
-        { title: "Tools", skills: portfolioData.skills.tools },
+        {
+            title: "Languages",
+            skills: portfolioData.skills.languages.map(skill => ({ name: skill, level: 90 }))
+        },
+        {
+            title: "Frontend",
+            skills: portfolioData.skills.frontend.map(skill => ({ name: skill, level: 85 }))
+        },
+        {
+            title: "Backend",
+            skills: portfolioData.skills.backend.map(skill => ({ name: skill, level: 88 }))
+        },
+        {
+            title: "Database",
+            skills: portfolioData.skills.database.map(skill => ({ name: skill, level: 82 }))
+        },
+        {
+            title: "Cloud & DevOps",
+            skills: portfolioData.skills.cloud.map(skill => ({ name: skill, level: 80 }))
+        },
+        {
+            title: "Tools",
+            skills: portfolioData.skills.tools.map(skill => ({ name: skill, level: 85 }))
+        },
     ];
 
     return (
@@ -25,6 +46,7 @@ export default function Skills() {
                         <div
                             key={index}
                             className="p-8 bg-card/60 backdrop-blur-sm border-2 border-primary/30 rounded-lg hover:border-primary hover:bg-card/80 transition-all duration-500 relative overflow-hidden group"
+                            style={{ animationDelay: `${index * 0.1}s` }}
                         >
                             {/* Corner accents */}
                             <div className="absolute top-0 left-0 w-3 h-3 border-l-2 border-t-2 border-secondary"></div>
@@ -38,14 +60,32 @@ export default function Skills() {
                             >
                                 {'//'} {category.title}
                             </h3>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="space-y-4">
                                 {category.skills.map((skill, idx) => (
-                                    <span
+                                    <div
                                         key={idx}
-                                        className="px-3 py-1.5 bg-primary/10 border border-primary/40 rounded text-sm text-foreground/90 hover:bg-primary/20 hover:text-primary hover:border-primary transition-all duration-300 cursor-default font-mono"
+                                        className="group/skill"
+                                        onMouseEnter={() => setHoveredSkill(`${category.title}-${skill.name}`)}
+                                        onMouseLeave={() => setHoveredSkill(null)}
                                     >
-                                        {skill}
-                                    </span>
+                                        <div className="flex justify-between items-center mb-2">
+                                            <span className="text-sm text-foreground/90 font-mono">
+                                                {skill.name}
+                                            </span>
+                                            <span className="text-xs text-primary font-mono opacity-0 group-hover/skill:opacity-100 transition-opacity">
+                                                {skill.level}%
+                                            </span>
+                                        </div>
+                                        <div className="h-2 bg-primary/10 rounded-full overflow-hidden border border-primary/20">
+                                            <div
+                                                className="h-full bg-gradient-to-r from-primary to-secondary rounded-full transition-all duration-1000 ease-out"
+                                                style={{
+                                                    width: hoveredSkill === `${category.title}-${skill.name}` ? `${skill.level}%` : '0%',
+                                                    boxShadow: '0 0 10px rgba(0, 255, 255, 0.5)'
+                                                }}
+                                            />
+                                        </div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
