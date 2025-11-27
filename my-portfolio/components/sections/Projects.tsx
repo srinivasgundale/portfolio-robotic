@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
 import { ArrowUpRight, Code } from "lucide-react";
+import SectionDecoration from "@/components/SectionDecoration";
+import SectionIcon from "@/components/SectionIcon";
 
 export default function Projects() {
     const [hoveredProject, setHoveredProject] = useState<number | null>(null);
@@ -28,7 +30,9 @@ export default function Projects() {
 
     return (
         <section className="py-32 px-4 relative z-10 animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="max-w-7xl mx-auto">
+            <SectionDecoration />
+            <div className="max-w-7xl mx-auto relative z-10">
+                <SectionIcon type="projects" />
                 <h2
                     className="text-5xl md:text-6xl font-bold text-center mb-20 tracking-tight text-primary font-mono uppercase"
                 >
