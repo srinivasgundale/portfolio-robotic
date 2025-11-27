@@ -22,31 +22,108 @@
   --color-ring: var(--ring);
 }
 
+/* Robotic Theme (Default) */
+:root[data-theme="robotic"],
 :root {
   --background: hsl(200 20% 5%);
-  --foreground: hsl(180 100% 95%);
-  --card: hsl(200 20% 8%);
-  --card-foreground: hsl(180 100% 95%);
-  --popover: hsl(200 20% 8%);
-  --popover-foreground: hsl(180 100% 95%);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(200 25% 10%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(200 25% 10%);
+  --popover-foreground: hsl(0 0% 95%);
   --primary: hsl(180 100% 50%);
   --primary-foreground: hsl(200 20% 5%);
   --secondary: hsl(140 100% 50%);
   --secondary-foreground: hsl(200 20% 5%);
-  --muted: hsl(200 15% 15%);
-  --muted-foreground: hsl(180 50% 60%);
+  --muted: hsl(200 20% 15%);
+  --muted-foreground: hsl(0 0% 70%);
   --accent: hsl(180 100% 50%);
   --accent-foreground: hsl(200 20% 5%);
   --destructive: hsl(0 84% 60%);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(180 100% 50% / 0.2);
-  --input: hsl(200 15% 15%);
+  --border: hsl(180 50% 30%);
+  --input: hsl(180 50% 30%);
   --ring: hsl(180 100% 50%);
+}
+
+/* Cyberpunk Theme */
+:root[data-theme="cyberpunk"] {
+  --background: hsl(280 30% 5%);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(280 25% 10%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(280 25% 10%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary: hsl(300 100% 50%);
+  --primary-foreground: hsl(280 30% 5%);
+  --secondary: hsl(320 100% 50%);
+  --secondary-foreground: hsl(280 30% 5%);
+  --muted: hsl(280 20% 15%);
+  --muted-foreground: hsl(0 0% 70%);
+  --accent: hsl(300 100% 50%);
+  --accent-foreground: hsl(280 30% 5%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(300 50% 30%);
+  --input: hsl(300 50% 30%);
+  --ring: hsl(300 100% 50%);
+}
+
+/* Matrix Theme */
+:root[data-theme="matrix"] {
+  --background: hsl(120 20% 3%);
+  --foreground: hsl(120 100% 80%);
+  --card: hsl(120 20% 8%);
+  --card-foreground: hsl(120 100% 80%);
+  --popover: hsl(120 20% 8%);
+  --popover-foreground: hsl(120 100% 80%);
+  --primary: hsl(120 100% 50%);
+  --primary-foreground: hsl(120 20% 3%);
+  --secondary: hsl(140 100% 45%);
+  --secondary-foreground: hsl(120 20% 3%);
+  --muted: hsl(120 20% 12%);
+  --muted-foreground: hsl(120 50% 60%);
+  --accent: hsl(120 100% 50%);
+  --accent-foreground: hsl(120 20% 3%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(120 50% 25%);
+  --input: hsl(120 50% 25%);
+  --ring: hsl(120 100% 50%);
+}
+
+/* Neon Theme */
+:root[data-theme="neon"] {
+  --background: hsl(20 30% 5%);
+  --foreground: hsl(0 0% 95%);
+  --card: hsl(20 25% 10%);
+  --card-foreground: hsl(0 0% 95%);
+  --popover: hsl(20 25% 10%);
+  --popover-foreground: hsl(0 0% 95%);
+  --primary: hsl(15 100% 60%);
+  --primary-foreground: hsl(20 30% 5%);
+  --secondary: hsl(35 100% 55%);
+  --secondary-foreground: hsl(20 30% 5%);
+  --muted: hsl(20 20% 15%);
+  --muted-foreground: hsl(0 0% 70%);
+  --accent: hsl(15 100% 60%);
+  --accent-foreground: hsl(20 30% 5%);
+  --destructive: hsl(0 84% 60%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(15 50% 35%);
+  --input: hsl(15 50% 35%);
+  --ring: hsl(15 100% 60%);
 }
 
 @layer base {
   * {
     border-color: var(--border);
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease,
+      border-color 0.5s ease,
+      box-shadow 0.5s ease,
+      text-shadow 0.5s ease;
   }
 
   html {
