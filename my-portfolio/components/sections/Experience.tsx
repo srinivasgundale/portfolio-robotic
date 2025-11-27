@@ -5,6 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { portfolioData } from "@/data/portfolio";
 import { Briefcase } from "lucide-react";
+import SectionDecoration from "@/components/SectionDecoration";
+import SectionIcon from "@/components/SectionIcon";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -44,6 +46,8 @@ export default function Experience() {
 
     return (
         <section ref={containerRef} className="py-32 px-4 relative z-10">
+            <SectionDecoration />
+            <SectionIcon type="experience" />
             <h2
                 ref={titleRef}
                 className="text-5xl md:text-6xl font-bold text-center mb-20 tracking-tight text-primary font-mono uppercase"

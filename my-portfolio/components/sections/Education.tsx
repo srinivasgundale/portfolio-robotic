@@ -2,10 +2,14 @@
 
 import { portfolioData } from "@/data/portfolio";
 import { GraduationCap } from "lucide-react";
+import SectionDecoration from "@/components/SectionDecoration";
+import SectionIcon from "@/components/SectionIcon";
 
 export default function Education() {
     return (
         <section className="py-32 px-4 relative z-10 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <SectionDecoration />
+            <SectionIcon type="education" />
             <h2
                 className="text-5xl md:text-6xl font-bold text-center mb-20 tracking-tight text-primary font-mono uppercase"
             >
@@ -25,7 +29,7 @@ export default function Education() {
                                 <GraduationCap className="text-primary" size={24} />
                             </div>
                             <div>
-                                <h3 className="text-xl font-bold mb-2 font-mono">{edu.school}</h3>
+                                <h3 className="text-2xl font-bold mb-2 font-mono">{edu.school}</h3>
                                 <p className="text-muted-foreground mb-3">{edu.degree}</p>
                                 <span className="text-sm text-primary font-mono">{edu.year}</span>
                             </div>

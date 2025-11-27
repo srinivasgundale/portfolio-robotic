@@ -2,11 +2,15 @@
 
 import { portfolioData } from "@/data/portfolio";
 import { Mail, Github, Linkedin, Twitter } from "lucide-react";
+import SectionDecoration from "@/components/SectionDecoration";
+import SectionIcon from "@/components/SectionIcon";
 
 export default function Contact() {
     return (
         <section className="py-32 px-4 relative z-10">
-            <div className="max-w-4xl mx-auto text-center">
+            <SectionDecoration />
+            <div className="max-w-4xl mx-auto text-center relative z-10">
+                <SectionIcon type="skills" />
                 <h2
                     className="text-5xl md:text-6xl font-bold mb-16 tracking-tight text-primary font-mono uppercase"
                 >
