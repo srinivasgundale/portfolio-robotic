@@ -138,7 +138,7 @@
     position: relative;
   }
 
-  /* Tech grid background */
+  /* Tech grid background - Robotic */
   body::before {
     content: '';
     position: fixed;
@@ -147,14 +147,36 @@
     width: 100%;
     height: 100%;
     background-image:
-      linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+      linear-gradient(rgba(0, 255, 255, 0.1) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 255, 0.1) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
     z-index: 1;
+    transition: background-image 0.5s ease;
   }
 
-  /* Scanline effect */
+  /* Cyberpunk grid */
+  [data-theme="cyberpunk"] body::before {
+    background-image:
+      linear-gradient(rgba(255, 0, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 0, 255, 0.15) 1px, transparent 1px);
+  }
+
+  /* Matrix grid */
+  [data-theme="matrix"] body::before {
+    background-image:
+      linear-gradient(rgba(0, 255, 0, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 0, 0.12) 1px, transparent 1px);
+  }
+
+  /* Neon grid */
+  [data-theme="neon"] body::before {
+    background-image:
+      linear-gradient(rgba(255, 107, 53, 0.12) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 107, 53, 0.12) 1px, transparent 1px);
+  }
+
+  /* Scanline effect - Robotic */
   body::after {
     content: '';
     position: fixed;
@@ -162,12 +184,41 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(transparent 50%,
-        rgba(0, 255, 255, 0.02) 50%);
+    background: linear-gradient(to bottom,
+        transparent 50%,
+        rgba(0, 255, 255, 0.03) 50%);
     background-size: 100% 4px;
     pointer-events: none;
-    z-index: 1;
+    z-index: 2;
     animation: scanline 8s linear infinite;
+    transition: background 0.5s ease;
+  }
+
+  /* Cyberpunk scanline */
+  [data-theme="cyberpunk"] body::after {
+    background: linear-gradient(to bottom,
+        transparent 50%,
+        rgba(255, 0, 255, 0.04) 50%);
+    background-size: 100% 4px;
+    animation: scanline 6s linear infinite;
+  }
+
+  /* Matrix scanline */
+  [data-theme="matrix"] body::after {
+    background: linear-gradient(to bottom,
+        transparent 50%,
+        rgba(0, 255, 0, 0.05) 50%);
+    background-size: 100% 4px;
+    animation: scanline 10s linear infinite;
+  }
+
+  /* Neon scanline */
+  [data-theme="neon"] body::after {
+    background: linear-gradient(to bottom,
+        transparent 50%,
+        rgba(255, 107, 53, 0.04) 50%);
+    background-size: 100% 4px;
+    animation: scanline 7s linear infinite;
   }
 
   @keyframes scanline {
