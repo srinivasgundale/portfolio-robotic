@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { portfolioData } from "@/data/portfolio";
+import SectionDecoration from "@/components/SectionDecoration";
 
 export default function Skills() {
     const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
@@ -35,7 +36,8 @@ export default function Skills() {
 
     return (
         <section className="py-32 px-4 relative z-10 animate-fade-in">
-            <div className="max-w-6xl mx-auto">
+            <SectionDecoration />
+            <div className="max-w-6xl mx-auto relative z-10">
                 <h2
                     className="text-5xl md:text-6xl font-bold text-center mb-20 tracking-tight text-primary font-mono uppercase"
                 >

@@ -376,52 +376,145 @@
   cursor: none !important;
 }
 
+/* Custom Cursor - Robotic (Default) */
 body::before {
   content: '';
   position: fixed;
-  left: var(--cursor-x);
-  top: var(--cursor-y);
-  width: 20px;
-  height: 20px;
+  width: 30px;
+  height: 30px;
   border: 2px solid hsl(180 100% 50%);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 9999;
+  z-index: 10000;
+  left: var(--cursor-x, 0);
+  top: var(--cursor-y, 0);
   transform: translate(-50%, -50%);
-  transition: width 0.2s, height 0.2s, border-color 0.3s;
-  animation: cursorPulse 2s ease-in-out infinite;
+  transition: width 0.3s, height 0.3s, border-color 0.3s;
   box-shadow:
     0 0 10px hsl(180 100% 50%),
     0 0 20px hsl(180 100% 50% / 0.5),
     inset 0 0 10px hsl(180 100% 50% / 0.3);
+  animation: cursorPulse 2s ease-in-out infinite;
 }
 
 body::after {
   content: '';
   position: fixed;
-  left: var(--cursor-x);
-  top: var(--cursor-y);
   width: 6px;
   height: 6px;
   background: hsl(180 100% 50%);
   border-radius: 50%;
   pointer-events: none;
-  z-index: 10000;
+  z-index: 10001;
+  left: var(--cursor-x, 0);
+  top: var(--cursor-y, 0);
   transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px hsl(180 100% 50%);
+  transition: background-color 0.3s;
+}
+
+/* Cyberpunk Cursor */
+[data-theme="cyberpunk"] body::before {
+  border-color: hsl(300 100% 50%);
   box-shadow:
-    0 0 5px hsl(180 100% 50%),
-    0 0 10px hsl(180 100% 50%);
+    0 0 15px hsl(300 100% 50%),
+    0 0 30px hsl(300 100% 50% / 0.5),
+    inset 0 0 15px hsl(300 100% 50% / 0.3);
+  animation: cursorGlitch 0.5s ease-in-out infinite;
+}
+
+[data-theme="cyberpunk"] body::after {
+  background: hsl(300 100% 50%);
+  box-shadow: 0 0 15px hsl(300 100% 50%);
+}
+
+/* Matrix Cursor */
+[data-theme="matrix"] body::before {
+  border-color: hsl(120 100% 50%);
+  border-radius: 0;
+  box-shadow:
+    0 0 10px hsl(120 100% 50%),
+    0 0 20px hsl(120 100% 50% / 0.5);
+  animation: cursorMatrix 1s linear infinite;
+}
+
+[data-theme="matrix"] body::after {
+  background: hsl(120 100% 50%);
+  border-radius: 0;
+  width: 8px;
+  height: 8px;
+  box-shadow: 0 0 10px hsl(120 100% 50%);
+}
+
+/* Neon Cursor */
+[data-theme="neon"] body::before {
+  border-color: hsl(15 100% 60%);
+  border-width: 3px;
+  box-shadow:
+    0 0 20px hsl(15 100% 60%),
+    0 0 40px hsl(15 100% 60% / 0.5),
+    inset 0 0 20px hsl(15 100% 60% / 0.3);
+  animation: cursorNeon 1.5s ease-in-out infinite;
+}
+
+[data-theme="neon"] body::after {
+  background: hsl(35 100% 55%);
+  box-shadow: 0 0 15px hsl(35 100% 55%);
 }
 
 @keyframes cursorPulse {
 
   0%,
   100% {
+    transform: translate(-50%, -50%) scale(1);
     opacity: 1;
   }
 
   50% {
-    opacity: 0.7;
+    transform: translate(-50%, -50%) scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+@keyframes cursorGlitch {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  25% {
+    transform: translate(-48%, -52%) rotate(2deg);
+  }
+
+  75% {
+    transform: translate(-52%, -48%) rotate(-2deg);
+  }
+}
+
+@keyframes cursorMatrix {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(90deg);
+  }
+}
+
+@keyframes cursorNeon {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    filter: hue-rotate(0deg);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.15);
+    filter: hue-rotate(20deg);
   }
 }
 
@@ -437,10 +530,38 @@ textarea:hover,
 body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
   width: 40px;
   height: 40px;
+}
+
+/* Robotic hover */
+body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
   border-color: hsl(140 100% 50%);
   box-shadow:
     0 0 15px hsl(140 100% 50%),
     0 0 30px hsl(140 100% 50% / 0.5);
+}
+
+/* Cyberpunk hover */
+[data-theme="cyberpunk"] body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
+  border-color: hsl(320 100% 50%);
+  box-shadow:
+    0 0 20px hsl(320 100% 50%),
+    0 0 40px hsl(320 100% 50% / 0.5);
+}
+
+/* Matrix hover */
+[data-theme="matrix"] body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
+  border-color: hsl(140 100% 45%);
+  box-shadow:
+    0 0 15px hsl(140 100% 45%),
+    0 0 30px hsl(140 100% 45% / 0.5);
+}
+
+/* Neon hover */
+[data-theme="neon"] body:has(a:hover, button:hover, input:hover, textarea:hover, [role="button"]:hover)::before {
+  border-color: hsl(35 100% 55%);
+  box-shadow:
+    0 0 25px hsl(35 100% 55%),
+    0 0 50px hsl(35 100% 55% / 0.5);
 }
 
 /* Shimmer animation for loading bar */
