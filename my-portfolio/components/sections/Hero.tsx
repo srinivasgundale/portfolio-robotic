@@ -11,6 +11,10 @@ export default function Hero() {
     const subtitleRef = useRef<HTMLParagraphElement>(null);
     const bioRef = useRef<HTMLParagraphElement>(null);
     const [mounted, setMounted] = useState(false);
+    const [displayedText, setDisplayedText] = useState("");
+    const [displayedBio, setDisplayedBio] = useState("");
+    const fullText = portfolioData.personalInfo.role;
+    const fullBio = portfolioData.personalInfo.bio;
 
     useEffect(() => {
         setMounted(true);
@@ -41,8 +45,36 @@ export default function Hero() {
             });
         }, containerRef);
 
-        return () => ctx.revert();
-    }, []);
+        // Typing animation for role - starts after subtitle fades in
+        const roleTypingTimeout = setTimeout(() => {
+            let i = 0;
+            const roleInterval = setInterval(() => {
+                if (i < fullText.length) {
+                    setDisplayedText(fullText.substring(0, i + 1));
+                    i++;
+                } else {
+                    clearInterval(roleInterval);
+                    // Start bio typing after role is complete
+                    setTimeout(() => {
+                        let j = 0;
+                        const bioInterval = setInterval(() => {
+                            if (j < fullBio.length) {
+                                setDisplayedBio(fullBio.substring(0, j + 1));
+                                j++;
+                            } else {
+                                clearInterval(bioInterval);
+                            }
+                        }, 30); // Faster typing for bio
+                    }, 300); // Small delay before bio starts
+                }
+            }, 100);
+        }, 1200);
+
+        return () => {
+            ctx.revert();
+            clearTimeout(roleTypingTimeout);
+        };
+    }, [fullText, fullBio]);
 
     return (
         <section ref={containerRef} className="min-h-screen flex items-center justify-center px-4 relative z-10">
@@ -80,17 +112,19 @@ export default function Hero() {
 
                     <p
                         ref={subtitleRef}
-                        className="text-lg md:text-xl text-primary max-w-xl font-light tracking-wide mb-4"
+                        className="text-lg md:text-xl text-primary max-w-xl font-light tracking-wide mb-4 min-h-[2em]"
                         style={{ fontFamily: "'Courier New', monospace" }}
                     >
-                        {'>'} {portfolioData.personalInfo.role}
+                        {'>'} {displayedText}
+                        {displayedText.length < fullText.length && <span className="animate-pulse">|</span>}
                     </p>
 
                     <p
                         ref={bioRef}
-                        className="text-sm md:text-base text-muted-foreground max-w-xl leading-relaxed border-l-2 border-primary/50 pl-4"
+                        className="text-sm md:text-base text-muted-foreground max-w-xl leading-relaxed border-l-2 border-primary/50 pl-4 min-h-[3em]"
                     >
-                        {portfolioData.personalInfo.bio}
+                        {displayedBio}
+                        {displayedBio.length > 0 && displayedBio.length < fullBio.length && <span className="animate-pulse">|</span>}
                     </p>
                 </div>
             </div>
